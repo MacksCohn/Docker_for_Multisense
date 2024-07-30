@@ -1,0 +1,7 @@
+COLCON_IGNORE
+ros-to-ros2-pipe_ws/log
+ros-to-ros2-pipe_ws/build
+ros-to-ros2-pipe_ws/install
+multisense_ws/devel
+multisense_ws/build
+multisense_ws/.catkin_workspace
