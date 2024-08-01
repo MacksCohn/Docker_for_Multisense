@@ -10,18 +10,18 @@
 class Pipe : public rclcpp::Node {
 private:
     ros::Subscriber _intake_points;
-    ros::Subscriber _intake_image_left;
-    ros::Subscriber _intake_image_right;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr _output_points;
+    ros::Subscriber _intake_image_left;
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr _output_image_left;
-    // rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr _output_image_right;
+    // Required for ros 1
     ros::NodeHandle _n;
 
     void _on_intake_points(sensor_msgs::PointCloud2 cloud) {
         sensor_msgs::msg::PointCloud2 converted;
         converted.header.frame_id = "camera_link";
         converted.header.stamp = get_clock()->now();
-        // RCLCPP_INFO(get_logger(), "%d", cloud.data.size());
+        // This could be done with a loop and was done originally
+        // The loop was removed in case the conditional slowed it down
         sensor_msgs::msg::PointField temp;
         temp.name     = cloud.fields[0].name;
         temp.offset   = cloud.fields[0].offset;
@@ -80,11 +80,10 @@ private:
 public:
     Pipe() : Node("rosToRos2Pipe") {
         _intake_points = _n.subscribe("multisense/image_points2", 1, &Pipe::_on_intake_points, this);
-        _intake_image_left = _n.subscribe("multisense/left/image_color", 1, &Pipe::_on_intake_image_left, this);
-        // _intake_image_right = _n.subscribe("multisense/right/image_rect", 1, &Pipe::_on_intake_image_right, this);
         _output_points = this->create_publisher<sensor_msgs::msg::PointCloud2>("multisense/image_points2", 10);
+
+        _intake_image_left = _n.subscribe("multisense/left/image_color", 1, &Pipe::_on_intake_image_left, this);
         _output_image_left = this->create_publisher<sensor_msgs::msg::Image>("multisense/left/image_color", 10);
-        // _output_image_right = this->create_publisher<sensor_msgs::msg::Image>("multisense/right/image_color", 10);
     }
 };
 
