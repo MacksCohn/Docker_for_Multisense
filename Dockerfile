@@ -6,7 +6,7 @@ SHELL ["/bin/bash", "-c"]
 
 # install ros package
 RUN apt-get update
-RUN apt-get install -y ros-${ROS_DISTRO}-desktop-full
+RUN apt-get install -y ros-noetic-desktop-full
 RUN apt-get install -y git python3-rosinstall build-essential cmake
 RUN rm -rf /var/lib/apt/lists/*
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
@@ -16,7 +16,7 @@ RUN rosdep update
 
 RUN mkdir -p ${PATH_TO_SOURCE}/src
 WORKDIR ${PATH_TO_SOURCE}/src
-RUN apt-get install -y ros-${ROS_DISTRO}-catkin python3-catkin-tools
+RUN apt-get install -y ros-noetic-catkin python3-catkin-tools
 RUN git clone --recurse-submodules https://github.com/carnegierobotics/multisense_ros.git multisense
 WORKDIR /
 RUN rosdep install --from-paths ${PATH_TO_SOURCE}/src --ignore-src -r -y
@@ -39,10 +39,10 @@ RUN apt-get install -y software-properties-common &&\
 RUN apt-get update && apt-get install -y ros-galactic-desktop
 RUN echo "source /opt/ros/galactic/setup.bash" >> ~/.bashrc
 
-RUN echo "ifconfig enx48225455e16f 10.66.171.20 netmask 255.255.255.0 broadcast 10.66.171.255 mtu 7200" >> ~/.bashrc # MUST DO FOR BRINGUP 10.66.171.20
+# RUN echo "ifconfig enx48225455e16f 10.66.171.20 netmask 255.255.255.0 broadcast 10.66.171.255 mtu 7200" >> ~/.bashrc # MUST DO FOR BRINGUP 10.66.171.20
 RUN apt-get install -y python3-colcon-common-extensions
 WORKDIR /home
-RUN echo "    PasswordAuthentication yes" >> /etc/ssh/ssh_config
+#RUN echo "    PasswordAuthentication yes" >> /etc/ssh/ssh_config
 RUN echo "alias cb='source /opt/ros/galactic/setup.bash && source /opt/ros/noetic/setup.bash && colcon build && . install/setup.bash'" >> ~/.bashrc
 RUN echo "alias  b='source /opt/ros/galactic/setup.bash && source /opt/ros/noetic/setup.bash && catkin_make && source devel/setup.bash'" >> ~/.bashrc
 RUN echo "alias c='clear'" >> ~/.bashrc
@@ -53,9 +53,11 @@ RUN echo "export ROS_DOMAIN_ID=38" >> ~/.bashrc
 # CMD ["ros2", "launch", "demo_nodes_cpp", "talker_listener_launch.py"]
 #
 # ADD TO BASHRC
-#alias save='docker commit $CURRENT_CONTAINER mackscohn/noetic-multisense:latest'
-#alias enter='docker exec -it $CURRENT_CONTAINER bash'
-#alias run='docker run -it -d --dns 10.0.0.1 --net=host --name multisense --privileged mackscohn/noetic-multisense:latest'
-#alias close='docker kill multisense && docker container prune -f'
-#
+# DOCKER ALIASES
+# export CURRENT_CONTAINER=multisense
+# alias save='docker commit $CURRENT_CONTAINER mackscohn/noetic-multisense:latest'
+# alias enter='docker exec -it $CURRENT_CONTAINER bash'
+# alias run='docker run -it -d --dns 10.0.0.1 --net=host --name multisense --privileged mackscohn/noetic-multisense:latest'
+# alias close='docker kill multisense && docker container prune -f'
+# alias prune='docker container prune -f'
  
