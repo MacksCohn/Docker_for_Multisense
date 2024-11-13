@@ -61,4 +61,3 @@ WORKDIR /home
 RUN echo "ifconfig enx48225455e16f 10.66.171.20 netmask 255.255.255.0 broadcast 10.66.171.255 mtu 7200" >> ~/.bashrc # MUST DO FOR BRINGUP 10.66.171.20
 # # launch ros package
 # CMD ["ros2", "launch", "demo_nodes_cpp", "talker_listener_launch.py"]
-#
