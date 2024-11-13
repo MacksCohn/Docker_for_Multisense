@@ -48,16 +48,24 @@ RUN echo "alias  b='source /opt/ros/galactic/setup.bash && source /opt/ros/noeti
 RUN echo "alias c='clear'" >> ~/.bashrc
 RUN echo "export ROS_DOMAIN_ID=38" >> ~/.bashrc
 
-
+WORKDIR /home
+RUN git clone https://github.com/MacksCohn/Docker_for_Multisense.git
 # # launch ros package
 # CMD ["ros2", "launch", "demo_nodes_cpp", "talker_listener_launch.py"]
 #
 # ADD TO BASHRC
-# DOCKER ALIASES
-# export CURRENT_CONTAINER=multisense
-# alias save='docker commit $CURRENT_CONTAINER mackscohn/noetic-multisense:latest'
-# alias enter='docker exec -it $CURRENT_CONTAINER bash'
-# alias run='docker run -it -d --dns 10.0.0.1 --net=host --name multisense --privileged mackscohn/noetic-multisense:latest'
-# alias close='docker kill multisense && docker container prune -f'
-# alias prune='docker container prune -f'
- 
+# export CURRENT_CONTAINER="CONTAINER_NAME_HERE"
+# export BUILD_NAME="build/test:latest"
+# #To build with docker, run the following to set a name (in the directory with the Dockerfile) sudo docker build -t BUILD_NAME_HERE:VERSION_HERE creates an image, one time use if Dockerfile is unchanged
+# #Save changes to imag
+# alias save='sudo docker commit $CURRENT_CONTAINER $BUILD_NAME'
+# #Enter containers bash
+# alias enter='sudo docker exec -it $CURRENT_CONTAINER bash'
+# #Open the container with network access and file access
+# alias run='sudo docker run -it -d --dns 10.0.0.1 --net=host --name $CURRENT_CONTAINER --privileged $BUILD_NAME'
+# #Close the container and prune it
+# alias close='sudo docker kill $CURRENT_CONTAINER && sudo docker container prune -f'
+# #Faster prune command
+# alias prune='sudo docker container prune -f'
+# to build, sudo docker build -t name/version .
+# alias build='sudo docker build -t $BUILD_NAME .'
