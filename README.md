@@ -38,4 +38,3 @@ source ~/.bashrc
 RUN roslaunch multisense_bringup multisense.launch
 ```
 if the local machine is also put on the same ROS_DOMAIN_ID=38, the multisense should now show up in rviz2
-```
