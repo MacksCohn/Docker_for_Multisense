@@ -14,14 +14,6 @@ alias build='sudo docker build -t $BUILD_NAME .'      # for building
 ## TO USE THIS DOCKER
 In the first terminal RUN the following commands
 ```bash
-build
-enter
-cd pipe/
-cb
-ros2 run ros-to-ros2-pipe ros-to-ros2-pipe
-```
-In a separate terminal, RUN:
-```bash
 enter
 cd multisense_ws
 b
@@ -36,5 +28,13 @@ source ~/.bashrc
 > then run the following command
 ```bash
 RUN roslaunch multisense_bringup multisense.launch
+```
+In a separate terminal, RUN:
+```bash
+build
+enter
+cd pipe/
+cb
+ros2 run ros-to-ros2-pipe ros-to-ros2-pipe
 ```
 if the local machine is also put on the same ROS_DOMAIN_ID=38, the multisense should now show up in rviz2
