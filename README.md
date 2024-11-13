@@ -27,9 +27,13 @@ cd multisense_ws
 b
 ```
 **Before you run this, connect the multisense head**
-it should show up as an ethernet connection in ifconfig
-To give it a proper ip address, the final line of the dockerfile should have added the instruction to the bashrc
-So, just source your ~/.bashrc then run the following command
+> it should show up as an ethernet connection in ifconfig
+> To give it a proper ip address, the final line of the dockerfile should have added the instruction to the bashrc
+> So, just source your ~/.bashrc 
+```bash
+source ~/.bashrc
+```
+> then run the following command
 ```bash
 RUN roslaunch multisense_bringup multisense.launch
 ```
