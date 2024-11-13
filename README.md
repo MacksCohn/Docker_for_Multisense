@@ -14,6 +14,7 @@ alias build='sudo docker build -t $BUILD_NAME .'      # for building
 ## TO USE THIS DOCKER
 In the first terminal RUN the following commands
 ```bash
+build
 enter
 cd multisense_ws
 b
@@ -31,8 +32,6 @@ roslaunch multisense_bringup multisense.launch
 ```
 In a separate terminal, RUN:
 ```bash
-build
-enter
 cd pipe/
 cb
 ros2 run ros-to-ros2-pipe ros-to-ros2-pipe
