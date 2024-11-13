@@ -27,7 +27,7 @@ source ~/.bashrc
 ```
 > then run the following command
 ```bash
-RUN roslaunch multisense_bringup multisense.launch
+roslaunch multisense_bringup multisense.launch
 ```
 In a separate terminal, RUN:
 ```bash
