@@ -50,7 +50,7 @@ RUN echo "export ROS_DOMAIN_ID=38" >> ~/.bashrc
 
 WORKDIR /home
 RUN git clone https://github.com/MacksCohn/Docker_for_Multisense.git pipe
-RUN rm pipe/Dockerfile pipe/README.md
+RUN rm pipe/Dockerfile
 RUN mv pipe/*/* pipe/.
 RUN rm -rf pipe/ros-to-ros2-pipe_ws
 WORKDIR /home/multisense_ws
